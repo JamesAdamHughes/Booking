@@ -64,13 +64,13 @@ function employeeSelected(id) {
     // If more than 2 people selected, allow move on to select room stage
     if (numSelectedEmployees > 1) {
         allowSelectRoom = true;
-        $('#selectRoomButton').css('background-color', 'green');
-        $('#selectRoomButtonText').text('Select a Meeting Room');
+        $('#make-booking-button').css('background-color', 'green');
+        $('#make-booking-button-text').text('Select a Meeting Room');
 
     } else {
         allowSelectRoom = false;
-        $('#selectRoomButton').css('background-color', 'red');
-        $('#selectRoomButtonText').text('Select Who\'s In the Meeting First');
+        $('#make-booking-button').css('background-color', 'red');
+        $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
     }
 
 
@@ -91,7 +91,7 @@ function goToMeetingRoomSelect() {
 // Subject request to book to server
 //      if successful will move user back to room overview page with success screen
 //      otherwise do something else
-function selectRoom(id) {
+function makeBooking(id) {
     // don't allow another selecton in the meantime
     allowSelectRoom = false;
 
@@ -99,7 +99,7 @@ function selectRoom(id) {
         employees: employees.filter(function(emp){
             return emp.selected;
         }),
-        room: id
+        room: getParameterByName('roomID')
     };
 
     console.log(bookingRequest);
@@ -126,4 +126,14 @@ function selectRoom(id) {
     });
 }
 
+// FROM http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 

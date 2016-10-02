@@ -5,7 +5,7 @@ exports.createController = function () {
     
     var bookRoom = function(roomID, employees){
         var room = rooms.filter(function(rm){
-            return rm.id === roomID;
+            return rm.id === Number(roomID);
         })[0];
 
         if(room && room.free){
