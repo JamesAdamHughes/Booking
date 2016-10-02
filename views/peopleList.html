@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <script   src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/roomBooking.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style type="text/css">
+        body{
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #availableEmployees {
+            width: 50%;
+        }
+
+        #selectedEmployees {
+            width: 50%;
+        }
+
+        #selectRoomButton {
+            width: 30%;
+            background-color: red;
+            display: flex;
+            align-items: center;
+        }
+
+        #selectRoomButtonText {
+            text-align: center;
+        }
+
+        #main-container{
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-content: space-around;
+        }
+
+        .roombox {
+            position: relative;
+            flex: 1;
+            margin: 20px;
+            height: 200px;
+            color: white;            
+            background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 85%); /* Standard syntax */
+            transition: all 300ms;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position-y: 20%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position:relative;
+            z-index:-1;
+        }
+
+        .roombox:hover{
+            background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 10%); /* Standard syntax */
+        }
+
+        .name{
+            position: absolute;
+            top: 60%;
+            right: 5%;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="main-container">            
+        <div id="peopleSelect" class="container">
+            <div id="availableEmployees" style="">
+                <h1>Available</h1>
+                <ul></ul>
+            </div>
+            <div id="selectedEmployees" style="">
+                <h1>Selected</h1>
+            <ul></ul>
+            </div>
+            <div id="selectRoomButton" onclick="goToMeetingRoomSelect()">
+                <h1 id="selectRoomButtonText">Select Who's In the Meeting First<h1>
+            </div>
+        </div>
+
+        <div id="roomList" class="container" style='display: none'>            
+        </div>    
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            createEmployees();
+        });
+    </script>
+    <!-- page content -->
+    
+  </body>
+</html>
