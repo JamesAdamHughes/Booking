@@ -3,13 +3,14 @@ exports.createController = function () {
 
     var rooms = buildRooms();
     
-    var bookRoom = function(roomID){
+    var bookRoom = function(roomID, employees){
         var room = rooms.filter(function(rm){
             return rm.id === roomID;
         })[0];
 
         if(room && room.free){
             room.free = false;
+            room.employees = employees;
             return true;
         } else {
             // room already booked
@@ -31,14 +32,17 @@ function buildRooms() {
     return [{
         name: 'The Recuit',
         id: 0,
-        free: true
+        free: true,
+        employees: []
     }, {
             name: 'The Avengers',
             id: 1,
-            free: true
+            free: true,
+            employees: []
         }, {
             name: 'Captain America',
             id: 2,
-            free: true
+            free: true,
+            employees: []
         }];
 }

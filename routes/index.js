@@ -8,7 +8,7 @@ exports.index = function(req, res){
 };
 
 exports.book = function(req, res){
-    res.render('peopleList.html');
+    res.render('booking.html');
 }
 
 exports.partials = function (req, res) {

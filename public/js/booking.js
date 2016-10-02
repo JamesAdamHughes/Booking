@@ -18,6 +18,9 @@ var allowSelectRoom = false;
 
 // Setup list of emps and rooms
 function createEmployees() {
+    
+    var API = api();
+
     employee_names.sort();
 
     // Add employees to available list
@@ -32,8 +35,8 @@ function createEmployees() {
         addEmployeeToList(emp, '#availableEmployees ul');
     });
 
-    rooms.forEach(function(room) {
-        $('#roomList').append('<div class="roombox" onclick="selectRoom(' + room.id + ')"><h1 class="name">' + room.name + '</h1></div>');
+    API.getRooms().then(function(rooms){
+        $('#room-list').append(API.drawRooms(rooms));
     });
 }
 
@@ -80,7 +83,7 @@ function addEmployeeToList(emp, list) {
 function goToMeetingRoomSelect() {
     if (allowSelectRoom) {
         $('#peopleSelect').css('display', 'none');
-        $('#roomList').css('display', '');
+        $('#room-list').css('display', '');
     }
 }
 

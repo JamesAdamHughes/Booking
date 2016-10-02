@@ -1,19 +1,16 @@
+/*
+    Fetch all the rooms from server
+    Draw rooms on page with different styles if they are free or not
+*/
 function getRooms() {
-    fetch('/api/getRooms', {
-        method: 'GET',
-    }).then(function (response) {
-        return response.json();
-    }).then(function (response) {
-        console.log(response);
-
-        response.rooms.forEach(function (room) {
-
-            if (room.free) {
-                $('#roomList').append('<div class="roombox room-free" onclick="selectRoom(' + room.id + ')"><h1 class="name">' + room.name + '</h1></div>');
-            } else {
-                $('#roomList').append('<div class="roombox room-taken" onclick="selectRoom(' + room.id + ')"><h1 class="name">' + room.name + '</h1></div>');
-            }
-
-        });
+    var API = api();
+    console.log(API);
+    API.getRooms().then(function(rooms){
+        $('#room-list').append(API.drawRooms(rooms));
     });
+}
+
+// Go to room booking page
+function bookRoom(){
+    window.location.href = '/book';
 }
