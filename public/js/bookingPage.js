@@ -14,8 +14,6 @@ var rooms = [{
     free: true
 }];
 
-var allowSelectRoom = false;
-
 // Setup list of emps and rooms
 function createEmployees() {
     
@@ -78,13 +76,6 @@ function employeeSelected(id) {
 
 function addEmployeeToList(emp, list) {
     $(list).append('<li onclick="employeeSelected(' + emp.id + ')">' + emp.name + '</li>');
-}
-
-function goToMeetingRoomSelect() {
-    if (allowSelectRoom) {
-        $('#peopleSelect').css('display', 'none');
-        $('#room-list').css('display', '');
-    }
 }
 
 // Handle a room being Selected
