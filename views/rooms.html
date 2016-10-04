@@ -75,9 +75,15 @@
     </div>
     <!-- page content -->
     <script type="text/javascript">
+        var pollingTimeMiliseconds = 5 * 60 * 1000; 
+        var pollingIntervalMiliseconds = 5000;
+        
         $(document).ready(function(){
             getRooms();
+            poll(function(){return false;}, function(){}, function(){}, pollingTimeMiliseconds, pollingIntervalMiliseconds)
+
         });
+
     </script>
 </body>
 <script type="text/javascript" src="js/roomPage.js"></script>

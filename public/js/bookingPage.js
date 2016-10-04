@@ -1,5 +1,6 @@
 var employee_names = ['Miranda', 'Jasmine', 'James', 'JB', 'Dainius', 'Kitty', 'Antionia', 'Heidi', 'Kevin', 'Joe', 'Graham'];
 var employees = [];
+var meetingLengths = ["1", "5", "10", "30", "60", "90"];
 var rooms = [{
     name: 'The Recuit',
     id: 0,
@@ -13,6 +14,14 @@ var rooms = [{
     id: 2,
     free: true
 }];
+
+// Empty booking request object
+var bookingRequest = {};
+
+function setup(){
+    createEmployees();
+    createTimes();
+}
 
 // Setup list of emps and rooms
 function createEmployees() {
@@ -35,6 +44,12 @@ function createEmployees() {
 
     API.getRooms().then(function(rooms){
         $('#room-list').append(API.drawRooms(rooms));
+    });
+}
+
+function createTimes() {
+    meetingLengths.forEach(function(meets){
+        $('#time-select ul').append('<li id="time-item-' + meets + '" onclick=timeSelected('+ Number(meets) +')>' + meets + ' minutes</li>');
     });
 }
 
@@ -70,8 +85,20 @@ function employeeSelected(id) {
         $('#make-booking-button').css('background-color', 'red');
         $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
     }
+}
 
+// Set the length of time of the meeting
+function timeSelected(time){
+    console.log(time);
 
+    // Visually deselect previous time
+    if(bookingRequest.time){
+        console.log(bookingRequest.time)
+        $('#time-item-'+bookingRequest.time).css('color', 'black');
+    }
+
+    bookingRequest.time = time;
+    $('#time-item-'+time).css('color', 'green');
 }
 
 function addEmployeeToList(emp, list) {
@@ -86,12 +113,12 @@ function makeBooking(id) {
     // don't allow another selecton in the meantime
     allowSelectRoom = false;
 
-    var bookingRequest = {
-        employees: employees.filter(function(emp){
+    // Create booking request
+    bookingRequest.employees = employees.filter(function(emp){
             return emp.selected;
-        }),
-        room: getParameterByName('roomID')
-    };
+        });
+        
+    bookingRequest.room = getParameterByName('roomID');
 
     console.log(bookingRequest);
 

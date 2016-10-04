@@ -15,11 +15,15 @@
         }
 
         #availableEmployees {
-            width: 50%;
+            width: 30%;
         }
 
         #selectedEmployees {
-            width: 50%;
+            width: 30%;
+        }
+
+        #time-select {
+            width: 30%;
         }
 
         #make-booking-button {
@@ -89,6 +93,10 @@
                 <h1>Selected</h1>
             <ul></ul>
             </div>
+            <div id="time-select">
+                <h1>Meeting Length</h1>
+                <ul></ul>
+            </div>
             <div id="make-booking-button" onclick="makeBooking()">
                 <h1 id="make-booking-button-text">Select Who's In the Meeting First<h1>
             </div>
@@ -100,7 +108,7 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            createEmployees();
+            setup();
         });
     </script>
     <!-- page content -->
