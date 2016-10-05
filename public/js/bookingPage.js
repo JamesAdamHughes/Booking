@@ -17,6 +17,7 @@ var rooms = [{
 
 // Empty booking request object
 var bookingRequest = {};
+var numSelectedEmployees = 0;
 
 function setup(){
     createEmployees();
@@ -57,7 +58,13 @@ function createTimes() {
 // Handle an employee being selected
 // Switch which list an employee is in
 function employeeSelected(id) {
-    var numSelectedEmployees = 0;
+
+    numSelectedEmployees = 0;
+
+    // If deslecting a current employee, reduce count
+    if(employees[id].selected){
+       numSelectedEmployees = numSelectedEmployees - 1;
+    }
 
     employees[id].selected = !employees[id].selected;
 
@@ -74,17 +81,18 @@ function employeeSelected(id) {
         }
     });
 
+    checkAllowBooking();
     // If more than 2 people selected, allow move on to select room stage
-    if (numSelectedEmployees > 1) {
-        allowSelectRoom = true;
-        $('#make-booking-button').css('background-color', 'green');
-        $('#make-booking-button-text').text('Select a Meeting Room');
+    // if (numSelectedEmployees > 1 && ookingRequest.time) {
+    //     allowSelectRoom = true;
+    //     $('#make-booking-button').css('background-color', 'green');
+    //     $('#make-booking-button-text').text('Book Room');
 
-    } else {
-        allowSelectRoom = false;
-        $('#make-booking-button').css('background-color', 'red');
-        $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
-    }
+    // } else {
+    //     allowSelectRoom = false;
+    //     $('#make-booking-button').css('background-color', 'red');
+    //     $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
+    // }
 }
 
 // Set the length of time of the meeting
@@ -99,10 +107,27 @@ function timeSelected(time){
 
     bookingRequest.time = time;
     $('#time-item-'+time).css('color', 'green');
+
+    checkAllowBooking();
 }
 
 function addEmployeeToList(emp, list) {
     $(list).append('<li onclick="employeeSelected(' + emp.id + ')">' + emp.name + '</li>');
+}
+
+// Check if the all the booking info is correct and allow user to request booking
+function checkAllowBooking(){
+    if (numSelectedEmployees > 1 && bookingRequest.time) {
+        allowSelectRoom = true;
+        $('#make-booking-button').css('background-color', 'green');
+        $('#make-booking-button-text').text('Book Room');
+
+    } else {
+        console.log("not allowed");
+        allowSelectRoom = false;
+        $('#make-booking-button').css('background-color', 'red');
+        $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
+    }
 }
 
 // Handle a room being Selected
