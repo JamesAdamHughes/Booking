@@ -90,6 +90,7 @@
 
         .list-container {
             height: 100%;
+            text-align:center;
         }
 
     </style>
@@ -97,37 +98,29 @@
   <body>
     <div id="main-container" class="container-fluid">     
         <div id="info-container" class="row">
-            <div id="info-select-container" class="container col-md-12">
-                <div class="col-md-4 list-container" id="availableEmployees" style="text-align:center;">
-                    <h1>Available</h1>
-                    <div class="info-list">                        
-                        <ul></ul>
-                    </div>
-                </div>
-                <div class="col-md-4 list-container" id="selectedEmployees" style="text-align:center;">
-                    <h1>Selected</h1>
-                <div class="info-list">                        
-                        <ul></ul>
-                    </div>
-                </div>
-                <div class="col-md-4 list-container" id="time-select" style="text-align:center;">
-                    <h1>Meeting Length</h1>
-                    <div class="info-list">                        
-                        <ul></ul>
-                    </div>
+            <div class="col-md-4 list-container" id="availableEmployees">
+            <h1>Available</h1>
+            <div class="info-list">                        
+                <ul></ul>
+            </div>
+            </div>
+            <div class="col-md-4 list-container" id="selectedEmployees">
+                <h1>Selected</h1>
+            <div class="info-list">                        
+                    <ul></ul>
                 </div>
             </div>
-            
+            <div class="col-md-4 list-container" id="time-select" >
+                <h1>Meeting Length</h1>
+                <div class="info-list">                        
+                    <ul></ul>
+                </div>
+            </div>          
         </div> 
         <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <button id="make-booking-button" type="button" class="btn btn-primary btn-lg btn-block" onclick="makeBooking()"></button>
-
-        </div>
-
-            <!-- <div >
-                <h1 id="make-booking-button-text">Select Who's In the Meeting First<h1>
-            </div>   -->          
+            <div class="col-md-6 col-md-offset-3">
+                <button id="make-booking-button" type="button" class="btn btn-primary btn-lg btn-block" onclick="makeBooking()"></button>
+            </div>       
         </div>       
 
     </div>
