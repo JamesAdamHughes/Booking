@@ -22,6 +22,7 @@ var numSelectedEmployees = 0;
 function setup(){
     createEmployees();
     createTimes();
+    checkAllowBooking();
 }
 
 // Setup list of emps and rooms
@@ -50,7 +51,7 @@ function createEmployees() {
 
 function createTimes() {
     meetingLengths.forEach(function(meets){
-        $('#time-select ul').append('<li id="time-item-' + meets + '" onclick=timeSelected('+ Number(meets) +')>' + meets + ' minutes</li>');
+        $('#time-select ul').append('<li onclick=timeSelected('+ Number(meets) +')><button type="button" id="time-item-' + meets + '" class="btn btn-default emp-button">' + meets + ' minutes </button></li>');
     });
 }
 
@@ -75,58 +76,56 @@ function employeeSelected(id) {
     employees.forEach(function(employee) {
         if (employee.selected) {
             numSelectedEmployees = numSelectedEmployees + 1;
-            addEmployeeToList(employee, '#selectedEmployees ul');
+            addEmployeeToList(employee, '#selectedEmployees ul', true);
         } else {
-            addEmployeeToList(employee, '#availableEmployees ul');
+            addEmployeeToList(employee, '#availableEmployees ul', false);
         }
     });
 
     checkAllowBooking();
-    // If more than 2 people selected, allow move on to select room stage
-    // if (numSelectedEmployees > 1 && ookingRequest.time) {
-    //     allowSelectRoom = true;
-    //     $('#make-booking-button').css('background-color', 'green');
-    //     $('#make-booking-button-text').text('Book Room');
-
-    // } else {
-    //     allowSelectRoom = false;
-    //     $('#make-booking-button').css('background-color', 'red');
-    //     $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
-    // }
 }
 
 // Set the length of time of the meeting
 function timeSelected(time){
     console.log(time);
+    $('#time-item-'+bookingRequest.time).removeClass('btn-info');
+
 
     // Visually deselect previous time
     if(bookingRequest.time){
         console.log(bookingRequest.time)
-        $('#time-item-'+bookingRequest.time).css('color', 'black');
+        $('#time-item-'+bookingRequest.time).addClass('btn-default');
     }
 
     bookingRequest.time = time;
-    $('#time-item-'+time).css('color', 'green');
+    // $('#time-item-'+time).css('color', 'green');
+    $('#time-item-'+bookingRequest.time).addClass('btn-info');
+
 
     checkAllowBooking();
 }
 
-function addEmployeeToList(emp, list) {
-    $(list).append('<li onclick="employeeSelected(' + emp.id + ')">' + emp.name + '</li>');
+function addEmployeeToList(emp, list, selected) {
+    var selectedClass = 'btn-default';
+    if(selected){
+        selectedClass = 'btn-info';
+    }
+    $(list).append('<li onclick="employeeSelected(' + emp.id + ')"><button type="button" class="btn btn-default ' + selectedClass +' emp-button">' + emp.name + '</button></li>');
 }
 
 // Check if the all the booking info is correct and allow user to request booking
 function checkAllowBooking(){
     if (numSelectedEmployees > 1 && bookingRequest.time) {
         allowSelectRoom = true;
-        $('#make-booking-button').css('background-color', 'green');
-        $('#make-booking-button-text').text('Book Room');
-
+        $('#make-booking-button').addClass('btn-success');
+        $('#make-booking-button').removeClass('btn-warning');
+        $('#make-booking-button').html('Book Room');
     } else {
         console.log("not allowed");
         allowSelectRoom = false;
-        $('#make-booking-button').css('background-color', 'red');
-        $('#make-booking-button-text').text('Select Who\'s In the Meeting First');
+        $('#make-booking-button').addClass('btn-warning');
+        $('#make-booking-button').removeClass('btn-success');
+        $('#make-booking-button').html('Select Members and a Time');
     }
 }
 

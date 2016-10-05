@@ -9,32 +9,22 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style type="text/css">
         body{
             font-family: 'Roboto', sans-serif;
         }
 
         #availableEmployees {
-            width: 30%;
+            /*width: 30%;*/
         }
 
         #selectedEmployees {
-            width: 30%;
+            /*width: 30%;*/
         }
 
         #time-select {
-            width: 30%;
-        }
-
-        #make-booking-button {
-            width: 30%;
-            background-color: red;
-            display: flex;
-            align-items: center;
-        }
-
-        #make-booking-buttonText {
-            text-align: center;
+            /*width: 30%;*/
         }
 
         #main-container{
@@ -48,6 +38,10 @@
             align-content: space-around;
         }
 
+        .emp-button{
+            width: 50%;
+        }
+
         .roombox {
             position: relative;
             flex: 1;
@@ -56,6 +50,16 @@
             color: white;            
             background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 85%); /* Standard syntax */
             transition: all 300ms;
+        }
+
+        ul {
+            padding-left: 0px;
+        }
+
+        li {
+            font-size: 18px;
+            list-style: none;
+            margin: 16px;
         }
 
         .image {
@@ -74,36 +78,53 @@
             background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 10%); /* Standard syntax */
         }
 
-        .name{
-            position: absolute;
-            top: 60%;
-            right: 5%;
+        .info-list {
+            overflow-y: auto;
+            height: 75%;
+        }
+
+        #info-select-container {
+            height: 500px;
         }
 
     </style>
   </head>
   <body>
-    <div id="main-container">            
-        <div id="peopleSelect" class="container">
-            <div id="availableEmployees" style="">
-                <h1>Available</h1>
-                <ul></ul>
+    <div id="main-container" class="container-fluid">     
+        <div id="info-container" class="row">
+            <div id="info-select-container" class="container col-md-12">
+                <div class="col-md-4" id="availableEmployees" style="text-align:center;">
+                    <h1>Available</h1>
+                    <div class="info-list">                        
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="col-md-4" id="selectedEmployees" style="text-align:center;">
+                    <h1>Selected</h1>
+                <div class="info-list">                        
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="col-md-4" id="time-select" style="text-align:center;">
+                    <h1>Meeting Length</h1>
+                    <div class="info-list">                        
+                        <ul></ul>
+                    </div>
+                </div>
             </div>
-            <div id="selectedEmployees" style="">
-                <h1>Selected</h1>
-            <ul></ul>
-            </div>
-            <div id="time-select">
-                <h1>Meeting Length</h1>
-                <ul></ul>
-            </div>
-            <div id="make-booking-button" onclick="makeBooking()">
-                <h1 id="make-booking-button-text">Select Who's In the Meeting First<h1>
-            </div>
+            
+        </div> 
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <button id="make-booking-button" type="button" class="btn btn-primary btn-lg btn-block" onclick="makeBooking()"></button>
+
         </div>
 
-        <div id="room-list" class="container" style='display: none'>            
-        </div>    
+            <!-- <div >
+                <h1 id="make-booking-button-text">Select Who's In the Meeting First<h1>
+            </div>   -->          
+        </div>       
+
     </div>
 
     <script type="text/javascript">
