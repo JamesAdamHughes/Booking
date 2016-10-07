@@ -24,7 +24,7 @@ exports.createController = function () {
     
     // Making a booking for a given room
     // Returns true if the booking was successful
-    // Time is in seconds (nee to chnage to minutes)
+    // Time is in minutes (nee to chnage to minutes)
     var bookRoom = function(roomID, employees, timeBooked){
         
         // find the room
@@ -38,8 +38,8 @@ exports.createController = function () {
             room.free = false;
             room.employees = employees;
 
-            var now = Date.now();
-            var until = now + Number(timeBooked)*1000;
+            var now = Date.now();            
+            var until = now + Number(timeBooked)*1000*60; //miliseconds to minutes
             room.bookedUntil = until;
 
             console.log("LOG: Booked room:" + room.id + ' for ' + timeBooked + ' seconds');
