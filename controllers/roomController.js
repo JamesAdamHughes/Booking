@@ -1,5 +1,5 @@
 var numRooms = 3;
-var names = ["The Recuit", "The Avengers", 'Captain America'];
+var names = ["The Recruit", "The Avengers", 'Captain America'];
 
 exports.createController = function () {
     var self = this;

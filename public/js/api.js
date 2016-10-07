@@ -21,12 +21,33 @@ var api = function () {
 
         // add employees in the room to the list
         room.employees.forEach(function (emp) {
-            listEl = listEl + '<li>' + emp.name + '</li>';
+            listEl = listEl + '<li>' + emp.name + '</h3></li>';
         });
         listEl = listEl + '</ul>';
 
-        return '<div class="roombox room-busy" onclick="selectRoom(' + room.id + ')"><h1 class="name">' + room.name + '</h1>' + listEl + '</div>';
+        return  '<div class="roombox room-busy" onclick="selectRoom(' + room.id + ')">' + 
+                    '<div class="row roombox-info-container">'+
+                        '<div class="roombox-people-list">' +
+                            listEl + 
+                        '</div>' +
+                        '<div class="roombox-time">' +
+                            'Booked Until: ' + self.getTimeStamp(room.bookedUntil) + 
+                        '</div>' +
+                        '<h1 class="name">' + room.name + '</h1>' +
+                    '</div>' +
+                '</div>';
     }; 
+
+    self.getTimeStamp = function (unix_timestamp) {
+        var date = new Date(unix_timestamp);
+        // Hours part from the timestamp
+        var hours = date.getHours();
+        // Minutes part from the timestamp
+        var minutes = "0" + date.getMinutes();
+
+        // Will display time in 10:30:23 format
+        return hours + ':' + minutes.substr(-2);
+    }
 
     return {
         getRooms: function () {

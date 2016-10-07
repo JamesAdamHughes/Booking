@@ -29,6 +29,26 @@
         .roombox.room-busy {
             background-color: red;
         }
+
+        .roombox-info-container {
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-flow: row;
+        }
+
+        .roombox-people-list {
+            flex: 1;
+        }
+
+        .roombox-time {
+            flex: 1;
+            text-align: center;
+        }
+
+        .roombox-info-container{
+            font-size: large;
+        }
         
         .roombox.room-free {
             background-color: green;
@@ -45,11 +65,6 @@
             position: relative;
             z-index: -1;
         }
-        
-/*        .roombox:hover {
-            background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 10%);
-            /* Standard syntax */
-        }*/
         
         .name {
             position: absolute;
