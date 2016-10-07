@@ -67,6 +67,19 @@ var api = function () {
                 elements = elements + self.drawRoom(room);
             });
             return elements;
+        },
+
+        getAllPeople: function(){
+            return fetch('/api/people/all', {
+                method: 'GET',
+            }).then(function(response){
+                return response.json();
+            }).then(function(response){
+                console.log(response);
+                return response.people;
+            }).catch(function(err){
+                console.log(err);
+            });
         }
     }
 }

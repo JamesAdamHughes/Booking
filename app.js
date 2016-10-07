@@ -41,6 +41,7 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 app.post('/api/requestBooking', api.requestBooking);
 app.get('/api/getRooms', api.getRooms);
+app.get('/api/people/all', api.getAllPeople);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

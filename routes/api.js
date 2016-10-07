@@ -1,5 +1,7 @@
 var RoomController = require('../controllers/roomController.js');
+var PeopleController = require('../controllers/peopleController.js');
 var roomController = RoomController.createController()
+var peopleController = PeopleController.createController()
 
 exports.getRooms = function(req, res){
   console.log('GET /api/getRooms');
@@ -29,5 +31,16 @@ exports.requestBooking = function(req, res) {
   }
 
   console.log(response);
+  res.json(response);
+}
+
+exports.getAllPeople = function(req, res) {
+  console.log("GET /api/people/all");
+
+  var response = {
+    ok: true,
+    people: peopleController.getAllPeople()
+  };
+
   res.json(response);
 }

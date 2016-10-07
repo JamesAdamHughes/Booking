@@ -1,4 +1,3 @@
-var employee_names = ['Miranda', 'Jasmine', 'James', 'JB', 'Dainius', 'Kitty', 'Antionia', 'Heidi', 'Kevin', 'Joe', 'Graham'];
 var employees = [];
 var meetingLengths = ["1", "5", "10", "30", "60", "90"];
 var rooms = [{
@@ -30,22 +29,24 @@ function createEmployees() {
     
     var API = api();
 
-    employee_names.sort();
+    //get the employees from the server
+    API.getAllPeople().then(function(nms){
+        
+        // Add employees to available list
+        nms.forEach(function(employee, index) {
+            var emp = {
+                name: employee,
+                id: index,
+                selected: false
+            }
+            employees.push(emp);
 
-    // Add employees to available list
-    employee_names.forEach(function(employee, index) {
-        var emp = {
-            name: employee,
-            id: index,
-            selected: false
-        }
-        employees.push(emp);
+            addEmployeeToList(emp, '#availableEmployees ul');
+        });
 
-        addEmployeeToList(emp, '#availableEmployees ul');
-    });
-
-    API.getRooms().then(function(rooms){
-        $('#room-list').append(API.drawRooms(rooms));
+        return API.getRooms();
+    }).then(function(rooms){
+         $('#room-list').append(API.drawRooms(rooms));
     });
 }
 
