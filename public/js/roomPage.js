@@ -3,14 +3,17 @@
     Draw rooms on page with different styles if they are free or not
 */
 var rooms = [];
+var API;
+
+function start(){
+    API = api();
+    poll(function(){return false;}, function(){}, function(){}, pollingTimeMiliseconds, pollingIntervalMiliseconds)
+}
 
 function getRooms() {
-    var API = api();
-    console.log(API);
     API.getRooms().then(function(rms){
         rooms = rms;
-        $('#room-list').empty();
-        $('#room-list').append(API.drawRooms(rooms));
+        API.drawRooms(rooms);       
     });
 }
 

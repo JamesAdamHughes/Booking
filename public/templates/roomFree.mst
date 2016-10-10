@@ -1,0 +1,3 @@
+<div class="roombox room-free" onclick="selectRoom({{room.id}})">
+    <h1 class="name">{{room.name}}</h1>
+</div>

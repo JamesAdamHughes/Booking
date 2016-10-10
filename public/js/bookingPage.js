@@ -52,7 +52,10 @@ function createEmployees() {
 
 function createTimes() {
     meetingLengths.forEach(function(meets){
-        $('#time-select ul').append('<li onclick=timeSelected('+ Number(meets) +')><button type="button" id="time-item-' + meets + '" class="btn btn-default emp-button">' + meets + ' minutes </button></li>');
+        $.get('templates/timeListElement.mst', function(template){
+            var rendered = Mustache.render(template, {meets:meets});
+            $('#time-select ul').append(rendered);
+        });
     });
 }
 

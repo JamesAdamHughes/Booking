@@ -1,0 +1,3 @@
+<li onclick=timeSelected({{meets}})>
+    <button type="button" id="time-item-{{meets}}" class="btn btn-default emp-button">{{meets}} minutes </button>
+</li>

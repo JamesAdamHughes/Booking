@@ -5,10 +5,10 @@
   "dependencies": {
     "body-parser": "^1.0.2",
     "ejs": "^2.5.2",
-    "express": "~4.1.1"
+    "express": "~4.1.1",
+    "mustache": "^2.2.1"
   },
   "scripts": {
-	"start": "node app.js"
- }
-  
+    "start": "node app.js"
+  }
 }

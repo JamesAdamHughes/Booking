@@ -2,40 +2,30 @@ var api = function () {
     var self = this;
 
     self.drawRoom = function (room) {
-        var element = '';
-
         if (room.free) {
-            element = self.drawFreeRoom(room);
+            self.drawFreeRoom(room);
         } else {
-            element = self.drawBusyRoom(room);
+            self.drawBusyRoom(room);
         }
-        return element;
+        return;
     };
 
     self.drawFreeRoom = function (room) {
-        return '<div class="roombox room-free" onclick="selectRoom(' + room.id + ')"><h1 class="name">' + room.name + '</h1></div>';
+        $.get('/templates/roomFree.mst', function(template){
+            var rendered = Mustache.render(template, {room: room}); 
+            $('#room-list').append(rendered);         
+        });
+        return;
     };
 
     self.drawBusyRoom = function (room) {
-        var listEl = '<ul>';
+        room.prettyTime = self.getTimeStamp(room.bookedUntil);
 
-        // add employees in the room to the list
-        room.employees.forEach(function (emp) {
-            listEl = listEl + '<li>' + emp.name + '</h3></li>';
+        $.get('/templates/roomBooked.mst', function(template){
+            var rendered = Mustache.render(template, {room: room}); 
+            $('#room-list').append(rendered);         
         });
-        listEl = listEl + '</ul>';
-
-        return  '<div class="roombox room-busy" onclick="selectRoom(' + room.id + ')">' + 
-                    '<div class="row roombox-info-container">'+
-                        '<div class="roombox-people-list">' +
-                            listEl + 
-                        '</div>' +
-                        '<div class="roombox-time">' +
-                            'Booked Until: ' + self.getTimeStamp(room.bookedUntil) + 
-                        '</div>' +
-                        '<h1 class="name">' + room.name + '</h1>' +
-                    '</div>' +
-                '</div>';
+        return;
     }; 
 
     self.getTimeStamp = function (unix_timestamp) {
@@ -62,11 +52,11 @@ var api = function () {
         },
 
         drawRooms: function (rooms) {
-            var elements = ''
+            $('#room-list').empty()
             rooms.forEach(function (room) {
-                elements = elements + self.drawRoom(room);
+                self.drawRoom(room);
             });
-            return elements;
+            return;
         },
 
         getAllPeople: function(){
