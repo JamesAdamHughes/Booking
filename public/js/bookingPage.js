@@ -124,6 +124,8 @@ function checkAllowBooking(){
         $('#make-booking-button').removeClass('btn-warning');
         $('#make-booking-button').html('Book Room');
     } else {
+
+        // Collect what data is missing and display that on the button
         var error = "Select ";
         var errors = [];
 
@@ -142,8 +144,6 @@ function checkAllowBooking(){
         console.log("not allowed");
         allowSelectRoom = false;
 
-        console.log(errors.join(","));
-
         $('#make-booking-button').addClass('btn-warning');
         $('#make-booking-button').removeClass('btn-success');
         $('#make-booking-button').html('Select ' + errors.join(","));
@@ -155,6 +155,13 @@ function checkAllowBooking(){
 //      if successful will move user back to room overview page with success screen
 //      otherwise do something else
 function makeBooking(id) {
+
+    checkAllowBooking();
+
+    if(!allowSelectRoom) {
+        return;
+    }
+
     // don't allow another selecton in the meantime
     allowSelectRoom = false;
 
