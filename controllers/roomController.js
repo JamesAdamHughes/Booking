@@ -1,6 +1,8 @@
 var numRooms = 3;
 var names = ["The Recruit", "The Avengers", 'Captain America'];
 
+var BOOKINGTIMEMINUTES = true;
+
 exports.createController = function () {
     var self = this;
 
@@ -41,7 +43,11 @@ exports.createController = function () {
             room.meetingName = meetingName;
             
             var now = Date.now();            
-            var until = now + Number(timeBooked)*1000*60; //miliseconds to minutes
+            if(BOOKINGTIMEMINUTES) {
+                var until = now + Number(timeBooked)*1000*60; //miliseconds to minutes
+            } else {
+                var until = now + Number(timeBooked)*1000; //miliseconds to seconds
+            }
             room.bookedUntil = until;
 
             console.log("LOG: Booked room:" + room.id + ' for ' + timeBooked + ' seconds');

@@ -4,6 +4,7 @@
 */
 var rooms = [];
 var API;
+var POLLING_INTERVAL_SECONDS = 2000
 
 function start(){
     API = api();
@@ -34,7 +35,7 @@ function selectRoom(id) {
 
 function poll(fn, callback, errback, timeout, interval) {
     var endTime = Number(new Date()) + (timeout || 2000);
-    interval = interval || 100;
+    interval = interval || POLLING_INTERVAL_SECONDS;
 
     (function p() {
             // If the condition is met, we're done! 
@@ -46,7 +47,7 @@ function poll(fn, callback, errback, timeout, interval) {
                 console.log("happended");
 
                 getRooms();
-                // setTimeout(p, interval);
+                setTimeout(p, interval);
             }
             // Didn't match and too much time, reject!
             else {
