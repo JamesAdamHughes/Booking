@@ -1,4 +1,8 @@
 /* app css stylesheet */
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+}
 
 .menu {
   list-style: none;
@@ -27,4 +31,144 @@
 .menu > li:nth-child(1):before {
   content: "";
   padding: 0;
+}
+
+.roombox {
+    position: relative;
+    flex: 1;
+    margin: 20px;
+    height: 200px;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
+    /* Standard syntax */
+    transition: all 300ms;
+}
+
+.roombox.room-busy {
+    background-color: red;
+}
+
+.roombox-info-container {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    font-size: large;
+}
+
+.roombox-people-list {
+}
+
+.roombox-time {
+}  
+
+.roombox.room-free {
+    background-color: green;
+}
+
+.roombox-info-item {
+  margin-left: 20px;
+  flex: 1;
+  display: flex;
+}
+
+.roombox-info-item .info-item-name {
+  width: 20%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-y: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    z-index: -1;
+}
+
+.name {
+    position: absolute;
+    top: 60%;
+    right: 5%;
+}
+
+#main-container {
+    width: 100%;
+    height: 100%;
+}
+
+#availableEmployees {
+    /*width: 30%;*/
+}
+
+#selectedEmployees {
+    /*width: 30%;*/
+}
+
+#room-book-container {
+    height: 70vh;
+}
+
+#main-container{
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.emp-button{
+    width: 70%;
+    height: 100%;
+    font-size: 18px;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+li {
+  list-style: none;
+  margin: 16px;
+}
+
+.info-list li {
+    list-style: none;
+    margin: 16px;
+    height: 50px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-y: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position:relative;
+    z-index:-1;
+}
+
+.roombox:active{
+    background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 10%); /* Standard syntax */
+}
+
+#info-select-container {
+    height: 100%;
+}
+
+.list-container {
+    height: 100%;
+    text-align:center;
+}
+
+.list-container .info-list {
+    overflow-y: auto;
+    height: 75%;
 }

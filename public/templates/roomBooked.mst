@@ -1,15 +1,27 @@
 <div class="roombox room-busy" onclick="selectRoom({{room.id}})"> 
     <div class="row roombox-info-container">
-        <div class="roombox-people-list">
-            <ul>
-                {{#room.employees}}
-                <li>{{name}}</li>
-                {{/room.employees}}
-            </ul>
-        </div>
-        <div class="roombox-time">
-            Booked Until: {{room.prettyTime}}
-        </div>
         <h1 class="name">{{room.name}}</h1>
+        <div class="roombox-info-item ">
+            <div class="info-item-name">
+                Meeting Name: 
+            </div>
+            
+                {{room.meetingName}}
+
+        </div>
+        <div class="roombox-info-item roombox-people-list">
+            <div class="info-item-name">
+                 Members: 
+            </div>
+                {{#room.employees}}
+                        {{name}},
+                {{/room.employees}}
+        </div>
+        <div class="roombox-info-item roombox-time">
+            <div class="info-item-name">
+                 Booked Until: 
+            </div>
+            {{room.prettyTime}}
+        </div>
     </div>
 </div>

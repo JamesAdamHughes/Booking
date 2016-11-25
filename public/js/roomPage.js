@@ -46,7 +46,7 @@ function poll(fn, callback, errback, timeout, interval) {
                 console.log("happended");
 
                 getRooms();
-                setTimeout(p, interval);
+                // setTimeout(p, interval);
             }
             // Didn't match and too much time, reject!
             else {

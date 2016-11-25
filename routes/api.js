@@ -23,7 +23,7 @@ exports.requestBooking = function(req, res) {
   };
 
   // Try to book the room
-  if(roomController.bookRoom(req.body.room, req.body.employees, req.body.time)){
+  if(roomController.bookRoom(req.body.room, req.body.employees, req.body.time, req.body.name)){
     // Booking successful, go back to home screen
     response.ok = true;
   } else {

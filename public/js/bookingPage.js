@@ -1,18 +1,5 @@
 var employees = [];
 var meetingLengths = ["1", "5", "10", "30", "60", "90"];
-var rooms = [{
-    name: 'The Recuit',
-    id: 0,
-    free: true
-}, {
-    name: 'The Avengers',
-    id: 1,
-    free: true
-}, {
-    name: 'Captain America',
-    id: 2,
-    free: true
-}];
 
 // Empty booking request object
 var bookingRequest = {};
@@ -26,7 +13,7 @@ function setup(){
 
 // Setup list of emps and rooms
 function createEmployees() {
-    
+
     var API = api();
 
     //get the employees from the server
@@ -117,19 +104,49 @@ function addEmployeeToList(emp, list, selected) {
     $(list).append('<li onclick="employeeSelected(' + emp.id + ')"><button type="button" class="btn btn-default ' + selectedClass +' emp-button">' + emp.name + '</button></li>');
 }
 
+function checkMeetingNameSet(){
+    return (getMeetingName().length > 1);
+}
+
+function getMeetingName(){
+    return $('#meeting-name-input').val();
+}
+
 // Check if the all the booking info is correct and allow user to request booking
 function checkAllowBooking(){
-    if (numSelectedEmployees > 1 && bookingRequest.time) {
+
+    // Check if a name has been set
+    var nameSet = checkMeetingNameSet();
+
+    if (numSelectedEmployees > 1 && bookingRequest.time && nameSet) {
         allowSelectRoom = true;
         $('#make-booking-button').addClass('btn-success');
         $('#make-booking-button').removeClass('btn-warning');
         $('#make-booking-button').html('Book Room');
     } else {
+        var error = "Select ";
+        var errors = [];
+
+        if(numSelectedEmployees <= 1) {
+            errors.push("Members");
+        }
+
+        if(!bookingRequest.time) {
+            errors.push(" Time");
+        }
+
+        if(!nameSet) {
+            errors.push(" Name");
+        }
+
         console.log("not allowed");
         allowSelectRoom = false;
+
+        console.log(errors.join(","));
+
         $('#make-booking-button').addClass('btn-warning');
         $('#make-booking-button').removeClass('btn-success');
-        $('#make-booking-button').html('Select Members and a Time');
+        $('#make-booking-button').html('Select ' + errors.join(","));
     }
 }
 
@@ -147,6 +164,8 @@ function makeBooking(id) {
         });
         
     bookingRequest.room = getParameterByName('roomID');
+
+    bookingRequest.name = getMeetingName();
 
     console.log(bookingRequest);
 

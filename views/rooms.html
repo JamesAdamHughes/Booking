@@ -5,79 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>title</title>
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style type="text/css">
-        body {
-            font-family: 'Roboto', sans-serif;
-            height: 100vh;
-        }
-        
-        .roombox {
-            position: relative;
-            flex: 1;
-            margin: 20px;
-            height: 200px;
-            color: white;
-            background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 85%);
-            transition: all 300ms;
-        }
-        
-        .roombox.room-busy {
-            background-color: red;
-        }
-
-        .roombox-info-container {
-            height: 100%;
-            padding: 20px;
-            display: flex;
-            flex-flow: row;
-        }
-
-        .roombox-people-list {
-            flex: 1;
-        }
-
-        .roombox-time {
-            flex: 1;
-            text-align: center;
-        }
-
-        .roombox-info-container{
-            font-size: large;
-        }
-        
-        .roombox.room-free {
-            background-color: green;
-        }
-        
-        .image {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position-y: 20%;
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-            position: relative;
-            z-index: -1;
-        }
-        
-        .name {
-            position: absolute;
-            top: 60%;
-            right: 5%;
-        }
-        
-        #main-container {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
@@ -90,17 +23,15 @@
     </div>
     <!-- page content -->
     <script type="text/javascript">
-        var pollingTimeMiliseconds = 10 * 60 * 1000; 
-        var pollingIntervalMiliseconds = 10000;
+        var pollingTimeMiliseconds = 5 * 60 * 1000; 
+        var pollingIntervalMiliseconds = 5000;
 
         $(document).ready(function(){
-            start();
-
+            start();        
         });
 
     </script>
 </body>
-<script type="text/javascript" src="js/roomPage.js"></script>
 <script type="text/javascript" src="js/api.js"></script>
-
+<script type="text/javascript" src="js/roomPage.js"></script>
 </html>

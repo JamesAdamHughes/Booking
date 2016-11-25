@@ -17,6 +17,7 @@ exports.createController = function () {
                 rm.free = true;
                 rm.bookedUntil = undefined;
                 rm.employees = [];
+                rm.meetingName = "";
             }
         })
         return rooms;
@@ -25,7 +26,7 @@ exports.createController = function () {
     // Making a booking for a given room
     // Returns true if the booking was successful
     // Time is in minutes (nee to chnage to minutes)
-    var bookRoom = function(roomID, employees, timeBooked){
+    var bookRoom = function(roomID, employees, timeBooked, meetingName){
         
         // find the room
         var room = rooms.filter(function(rm){
@@ -37,7 +38,8 @@ exports.createController = function () {
         if(room && room.free){
             room.free = false;
             room.employees = employees;
-
+            room.meetingName = meetingName;
+            
             var now = Date.now();            
             var until = now + Number(timeBooked)*1000*60; //miliseconds to minutes
             room.bookedUntil = until;
@@ -71,5 +73,6 @@ function makeRoom(name, id){
         id: id,
         free: true,
         employees:[],
+        meetingName: ""
     };
 }
